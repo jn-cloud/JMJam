@@ -60,6 +60,7 @@ function mainGame.load()
     peon_sprites = load_sprites("peonPossessedSheet_01.png")
     peon_idle_sprites = load_sprites("peonIdleSheet_01.png")
     game_over_image = love.graphics.newImage("gameOver.png")
+    end_credits_image = love.graphics.newImage("endCredits.png")
     youWin_image = love.graphics.newImage("youWin.png")
     vignette = love.graphics.newImage("vignette.png")
 
@@ -161,21 +162,25 @@ function mainGame.draw()
             if hero.saved then
                 totalSaved = score_saved
                 love.graphics.draw(youWin_image, x, y, 0, scale)
-
                 --draw total people count label
                 mainScoreTxt:draw(totalPeople_color,30,"Total People Count",450,0,0)
                 --draw total people count 
                 mainScoreTxt:draw(totalPeople_color,30,people_count,500,0,0)
-
                 --draw total people count label
                 mainScoreTxt:draw(deadPeople_color,40,"Dead People Count",550,0,0)
                 mainScoreTxt:draw(deadPeople_color,45,people_count-score_saved,600,0,0)
-
                 --draw saved people count    
                 mainScoreTxt:draw(mainScoreTxt_color,55,"Your Score - You Saved",675,0,0)
                 mainScoreTxt:draw(mainScoreTxt_color,75,score_saved,750,0,0)
-
-
+                local credits_time = 20
+                crRollTime = math.max(0, (time - credits_time))
+                if crRollTime > 20 then
+                    alpha = math.max(0, (time - wait_time - game_over_time) / fade_time)
+                    love.graphics.setColor(0,0,0,alpha)
+                    love.graphics.rectangle("fill", 0, 0, window_w, window_h)
+                    love.graphics.setColor(1,1,1,1)
+                    love.graphics.draw(end_credits_image, x, y, 0, scale)
+                end
             else
                 love.graphics.draw(game_over_image, x, y, 0, scale)
             end
