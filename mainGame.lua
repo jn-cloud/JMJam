@@ -123,7 +123,7 @@ function mainGame.draw()
 
     --draw total people count label
     mainScoreTxt:draw(totalPeople_color,30,"Total People Count",100,600,0)
-     mainScoreTxt:draw(totalPeople_color,30,people_count,135,600,0)
+    mainScoreTxt:draw(totalPeople_color,30,people_count,135,600,0)
     --draw chossen level stats
     mainScoreTxt:draw(totalPeople_color,30,"Game Level",25,600,0)
     mainScoreTxt:draw(totalPeople_color,30,setLevel,65,600,0)

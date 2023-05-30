@@ -40,10 +40,10 @@ function love.load()
     mainGame:load()
 
     --load slider control for people count and to set game level
-    peopleCountSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1100,(love.graphics.getHeight( )+100),
-    slider_length, 3000, 300, 3000, function (v) people_count = math.floor(v) end)
+    peopleCountSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1160,(love.graphics.getHeight( )+100),
+    slider_length, 3000, 3000, 10, function (v) people_count = math.floor(v) end)
 
-    setGameLevelSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1100,(love.graphics.getHeight( )-200),
+    setGameLevelSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1060,(love.graphics.getHeight( )+100),
     slider_length, 1, 1, 3, function (v) setLevel = math.floor(v) end)  
               
     if full_screen then
@@ -72,12 +72,12 @@ function love.draw()
         mainMenu_bg:draw(screen_offset_x, screen_offset_y,1600,850)
         --draw people count label
         peopleCountSlider:draw()
-        mainScoreTxt:draw(volumecolor,15,"Choose number of people",love.graphics.getHeight( ),600,-35)
-        mainScoreTxt:draw(volumecolor,15,math.floor(people_count),love.graphics.getHeight( ),550,-200)
+        mainScoreTxt:draw(volumecolor,15,"People Count",love.graphics.getHeight( ),700,-45)
+        mainScoreTxt:draw(volumecolor,15,math.floor(people_count),love.graphics.getHeight( ),690,-300)
         --draw game level label
         setGameLevelSlider:draw()
-        mainScoreTxt:draw(volumecolor,15,"Choose Game Level",love.graphics.getHeight( ),600,-325)
-        mainScoreTxt:draw(volumecolor,15,math.floor(setLevel),love.graphics.getHeight( ),550,-400)
+        mainScoreTxt:draw(volumecolor,15,"Game Level",love.graphics.getHeight( ),590,-45)
+        mainScoreTxt:draw(volumecolor,15,math.floor(setLevel),love.graphics.getHeight( ),590,-300)
                 
     else
         mainGame:draw()
@@ -94,10 +94,10 @@ function love.update(dt)
             people_radius = 8
             hero_speed_lava = 1100
             hero_speed = 400
-            speed = 100
-            evil.speed = 150
-            heat_death = 2
-            cool_set = 0.98
+            speed = 800
+            evil.speed = 100
+            heat_death = 4
+            cool_set = 2.5
         end
 
         if setLevel == 2 then

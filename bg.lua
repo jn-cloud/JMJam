@@ -2,7 +2,7 @@ bg = {}
 
 goal_x = 15472
 goal_y = 1024
-goal_radius_sq = 600*600
+goal_radius_sq = 600 * 600
 
 function bg.load(self)
     bg.lava = love.graphics.newImage("lava_0000.png")

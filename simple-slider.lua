@@ -39,7 +39,7 @@ function newSlider(x, y, length, value, min, max, setter, style)
     local p = style or {}
     s.width = p.width or length * 0.1
     s.orientation = p.orientation or 'vertical'
-    s.track = p.track or 'rectangle'
+    s.track = p.track or 'line'
     s.knob = p.knob or 'rectangle'
 
     s.grabbed = false
