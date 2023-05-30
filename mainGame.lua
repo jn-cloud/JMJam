@@ -173,9 +173,11 @@ function mainGame.draw()
                 mainScoreTxt:draw(mainScoreTxt_color,55,"Your Score - You Saved",675,0,0)
                 mainScoreTxt:draw(mainScoreTxt_color,75,score_saved,750,0,0)
                 local credits_time = 20
+                local c_wait_time = 10
+                local c_over_time = 25
                 crRollTime = math.max(0, (time - credits_time))
                 if crRollTime > 20 then
-                    alpha = math.max(0, (time - wait_time - game_over_time) / fade_time)
+                    alpha = math.max(0, (time - c_wait_time - c_over_time) / fade_time)
                     love.graphics.setColor(0,0,0,alpha)
                     love.graphics.rectangle("fill", 0, 0, window_w, window_h)
                     love.graphics.setColor(1,1,1,1)
