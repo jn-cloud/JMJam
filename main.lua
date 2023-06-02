@@ -5,13 +5,13 @@ require("mainMenu_bg")
 require("mainGame")
 require('simple-slider')
 require('mainScoreTxt')
+require('screenAdapt')
 
 release = true
 debug = false and not release
 full_screen = false or release
 page = release and "menu" or "mainGame"
--- window_w = 3840
--- window_h = 2160
+
 window_w = 1920
 window_h = 1080
 
@@ -38,22 +38,36 @@ loadVal = 0
 function love.load()
     mainMenu_bg:load()
     mainGame:load()
-
-    --load slider control for people count and to set game level
-    peopleCountSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1160,(love.graphics.getHeight( )+100),
-    slider_length, 3000, 3000, 10, function (v) people_count = math.floor(v) end)
-
-    setGameLevelSlider = newSlider((love.graphics.getWidth( )/2-slider_length/2)+1060,(love.graphics.getHeight( )+100),
-    slider_length, 1, 1, 3, function (v) setLevel = math.floor(v) end)  
-              
+           
     if full_screen then
         love.window.setFullscreen(true)
         window_w, window_h = love.graphics.getDimensions()
     else
         love.window.setMode(window_w, window_h)
     end
+
     world = love.physics.newWorld(0, 0, true)
+
+    loffset_X,loffset_Y = screeanAdapt:load(0.9,0.8)
+    poffset_X,poffset_Y = screeanAdapt:load(0.99,0.8)
+
+    -- print(loffset_X,loffset_Y)
+    -- print(poffset_X,poffset_Y)
+    -- local start_x_p = math.sqrt(3.13)*math.max(w, h)*0.5
+    -- local start_y_p = mainMenu_bg.image:getHeight()/2+200
+    -- local start_x_l = math.sqrt(3.6)*math.max(w, h)*0.5
+    -- local start_y_l = mainMenu_bg.image:getHeight()/2+200
+
+    --load slider control for people count and to set game level
+    
+    setGameLevelSlider = newSlider(loffset_X,loffset_Y,slider_length, 1, 1, 3,
+                            function (v) setLevel = math.floor(v) end) 
+
+    peopleCountSlider = newSlider(poffset_X,poffset_Y,slider_length, 3000, 3000, 10,
+                            function (v) people_count = math.floor(v) end)
+
 end
+
 
 function love.keypressed(key)
     if page == "menu" then
@@ -68,16 +82,17 @@ end
 
 function love.draw()
     if page == "menu" then
-        -- mainMenu_bg:draw()
-        mainMenu_bg:draw(screen_offset_x, screen_offset_y,1600,850)
+        mainMenu_bg:draw()
+        -- mainMenu_bg:draw(screen_offset_x, screen_offset_y,1600,850)
         --draw people count label
         peopleCountSlider:draw()
-        mainScoreTxt:draw(volumecolor,15,"People Count",love.graphics.getHeight( ),700,-45)
-        mainScoreTxt:draw(volumecolor,15,math.floor(people_count),love.graphics.getHeight( ),690,-300)
         --draw game level label
         setGameLevelSlider:draw()
-        mainScoreTxt:draw(volumecolor,15,"Game Level",love.graphics.getHeight( ),590,-45)
-        mainScoreTxt:draw(volumecolor,15,math.floor(setLevel),love.graphics.getHeight( ),590,-300)
+        mainScoreTxt:draw(volumecolor,15,"Game Level",0.83,1.1)
+        mainScoreTxt:draw(volumecolor,15,math.floor(setLevel),0.89,0.5)
+        --draw text
+        mainScoreTxt:draw(volumecolor,15,"People Count",0.96,1.1)
+        mainScoreTxt:draw(volumecolor,15,math.floor(people_count),0.96,0.5)
                 
     else
         mainGame:draw()

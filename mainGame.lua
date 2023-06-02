@@ -122,12 +122,17 @@ function mainGame.draw()
     --draw volume label
     -- mainScoreTxt:draw(volumecolor,35,"Volume",800,650,0)
 
-    --draw total people count label
-    mainScoreTxt:draw(totalPeople_color,30,"Total People Count",100,600,0)
-    mainScoreTxt:draw(totalPeople_color,30,people_count,135,600,0)
     --draw chossen level stats
-    mainScoreTxt:draw(totalPeople_color,30,"Game Level",25,600,0)
-    mainScoreTxt:draw(totalPeople_color,30,setLevel,65,600,0)
+    mainScoreTxt:draw(totalPeople_color,30,"Game Level",0.8,-0.7)
+    mainScoreTxt:draw(totalPeople_color,30,setLevel,0.9,-0.6)
+
+    --draw total people count label
+    mainScoreTxt:draw(totalPeople_color,30,"Total People Count",0.75,-0.5)
+    mainScoreTxt:draw(totalPeople_color,30,people_count,0.87,-0.4)
+
+    --draw total people count label
+    -- mainScoreTxt:draw(totalPeople_color,30,"People Saved",175,600,0)
+    -- mainScoreTxt:draw(totalPeople_color,30,score_saved,225,600,0)
 
     -- debug draw
     -- mainScoreTxt:draw(totalPeople_color,30,people_radius,200,675,0)
@@ -163,15 +168,21 @@ function mainGame.draw()
                 totalSaved = score_saved
                 love.graphics.draw(youWin_image, x, y, 0, scale)
                 --draw total people count label
-                mainScoreTxt:draw(totalPeople_color,30,"Total People Count",450,0,0)
+                mainScoreTxt:draw(totalPeople_color,25,"Total People Count",0,0.5)
                 --draw total people count 
-                mainScoreTxt:draw(totalPeople_color,30,people_count,500,0,0)
+                mainScoreTxt:draw(totalPeople_color,25,people_count,0.1,0.6)
                 --draw total people count label
-                mainScoreTxt:draw(deadPeople_color,40,"Dead People Count",550,0,0)
-                mainScoreTxt:draw(deadPeople_color,45,people_count-score_saved,600,0,0)
+                mainScoreTxt:draw(deadPeople_color,30,"Dead People Count",-0.04,0.7)
+                mainScoreTxt:draw(deadPeople_color,30,people_count-score_saved,0.1,0.8)
                 --draw saved people count    
-                mainScoreTxt:draw(mainScoreTxt_color,55,"Your Score - You Saved",675,0,0)
-                mainScoreTxt:draw(mainScoreTxt_color,75,score_saved,750,0,0)
+                mainScoreTxt:draw(mainScoreTxt_color,33,"Your Score - You Saved",-0.1,0.9)
+                if score_saved > (people_count-score_saved) then
+                    mainScoreTxt:draw(mainScoreTxt_color,33,"Great Job Shaman",-0.05,0.98)
+                    mainScoreTxt:draw(mainScoreTxt_color,33,score_saved,0.108,1.1)
+                else
+                    mainScoreTxt:draw(mainScoreTxt_color,33,score_saved,0.11,0.98)
+                end
+
             else
                 love.graphics.draw(game_over_image, x, y, 0, scale)
             end
